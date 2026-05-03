@@ -1,0 +1,74 @@
+# ChainStream topic_profile seed
+#
+# Lands at ~/.agentflow/topic_profiles.yaml on the deploy host (only
+# if that file does not yet exist — apply_overlay.sh refuses to
+# clobber an operator's existing profile).
+#
+# This is a STARTER, not a finished profile. The operator runs
+# `af topic-profile init -i --profile chainstream` after install to
+# fill in product_facts / perspectives with real ChainStream business
+# specifics (those don't ship in the overlay because they're
+# operator-owned content, not infra).
+#
+# The skeletal values below are enough for the framework's bootstrap
+# detector (`af bootstrap --next-step`) to consider the profile
+# "present but incomplete" instead of "missing", which keeps /start
+# from triggering the full onboard wizard from scratch.
+
+version: "1.0"
+
+profiles:
+  chainstream:
+    label: ChainStream
+    summary: AI-native crypto infrastructure for real-time on-chain data and AI execution.
+
+    publisher_account:
+      brand: ChainStream
+      voice: 工程视角的从业者口吻；先讲清楚机制，再给判断；不当行业评论员
+      pronoun: 我们
+      output_language: zh-Hans
+      default_description: |
+        ChainStream — AI-native crypto infra. 我们做实时 on-chain 数据 + agent
+        执行层，让 agent 能把链上事件当作 state machine 的输入。
+      perspectives:
+        - 主流 crypto data infra 是 batch 的；我们是 streaming-first
+        - Agent 需要的不是图表，是带语义的 state machine 输入
+      product_facts:
+        # OPERATOR: replace these placeholders with real ChainStream facts
+        # via `af topic-profile init -i --profile chainstream`.
+        - "(operator: 替换为真实事实，例：ChainStream 在 Solana 主网亚秒延迟摄取)"
+        - "(operator: 替换为真实事实，例：MCP 执行层让 agent 直接订阅链上事件)"
+        - "(operator: 替换为真实事实，例：与某基金会 / 某项目方有什么具体合作)"
+      do:
+        - 用具体场景 / 客户 / 产品名落地论点
+        - 每段话能 anchor 回 product_facts 或 perspectives
+      dont:
+        - 写"行业 X 的发展趋势"这类泛谈
+        - 编造数字 / 合规背书 / partnership
+
+    keyword_groups:
+      core:
+        - on-chain data
+        - real-time crypto infra
+        - smart money
+      ai_execution:
+        - MCP
+        - AI agent
+        - state machine
+      ecosystem:
+        - Solana
+        - Ethereum
+        - Kafka
+
+    search_queries:
+      - smart money on-chain agents
+      - real-time chain data infra
+      - MCP crypto
+
+    avoid_terms:
+      - GDPR
+      - CCPA
+      - audited
+      - SOC2
+
+last_updated: "(auto-stamped on first upsert)"
