@@ -1,5 +1,14 @@
 # Changelog — chainstream-service overlay
 
+## [1.0.1] — 2026-05-03
+
+* Pin bumped: framework v1.0.21+ required (introduces
+  `AGENTFLOW_TOPIC_FIT_HARD_THRESHOLD`).
+* Overlay env adds `AGENTFLOW_TOPIC_FIT_HARD_THRESHOLD=0.05` so a
+  fresh ChainStream install ships with the hard topic-fit gate ON.
+  Prevents the v1.0.20-era "TCG customs article spun around
+  ChainStream" forced-analogy failure mode out of the box.
+
 ## [1.0.0] — 2026-05-03
 
 Initial split.
