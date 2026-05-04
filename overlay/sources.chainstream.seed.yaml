@@ -27,28 +27,190 @@ last_updated: "2026-05-04"
 # weight: medium — collected unless AGENTFLOW_TWITTER_KOL_ONLY_HIGH=true
 # weight: blocked — never collected (slot reserved for posterity)
 twitter_kols:
-  - handle: "@VitalikButerin"
-    weight: high
-    relevance_to_series: ["C"]
-  - handle: "@balajis"
-    weight: medium
-    relevance_to_series: ["B", "C"]
-  - handle: "@dwr_nt"
-    weight: medium
-    relevance_to_series: ["C"]
-  - handle: "@rainandcoffee"
-    weight: medium
-    relevance_to_series: ["C"]
-  - handle: "@jon_charb"
-    weight: medium
-    relevance_to_series: ["C"]
+  # Curated chainstream-flavored top 55 (auto-derived from a 131k-row
+  # Twitter KOL universe filtered by: bio mentions a crypto-infra strong
+  # token (MEV / on-chain / rollup / indexer / wallet / Solana / etc.),
+  # role contains Developer/Defi/Blockchain/Founder/Technician/Analyst,
+  # ≥10k followers, no NFT/memecoin/p2e/launchpad noise. Operator should
+  # review and prune; some entries are protocol official accounts which
+  # post mostly self-promotion.
 
-  # Generalist accounts — kept blocked because they pull OpenAI / startup
-  # / antique-watch noise that swamps the chainstream signal.
+# === Tier HIGH (≥50k followers) ===
+  - handle: "@accumulatehq"
+    weight: high
+    note: "Accumulate is an identity-based blockchain protocol wit (Blockchain, ~170k)"
+  - handle: "@wanchain_org"
+    weight: high
+    note: "The world’s premier decentralised blockchain interopera (Blockchain, ~157k)"
+  - handle: "@naboxwallet"
+    weight: high
+    note: "Nabox - The Multi-Chain DID Gateway to Web3 #Ethereum # (Blockchain, ~153k)"
+  - handle: "@autofarmnetwork"
+    weight: high
+    note: "One-stop DeFi platform | Lowest fee Multi-chain DEX & y (Blockchain/Defi, ~144k)"
+  - handle: "@DefiLlama"
+    weight: high
+    note: "Open and transparent DeFi TVL and analytics. Check out (Defi, ~142k)"
+  - handle: "@duetprotocol"
+    weight: high
+    note: "Duet is worlds first multi-chain synthetic assets ecosy (Blockchain, ~127k)"
+  - handle: "@TENfinance"
+    weight: high
+    note: "TEN - Decentralized Finance, Simplified.  TENFI - Yield (Defi, ~122k)"
+  - handle: "@KalataOfficial"
+    weight: high
+    note: "Derivatives trading platform based on #BSC, allowing ev (Defi, ~110k)"
+  - handle: "@MapProtocol"
+    weight: high
+    note: "Fully decentralized omnichain layer for Web3 with prova (Blockchain/Technician, ~108k)"
+  - handle: "@whale_map"
+    weight: high
+    note: "Actionable on-chain data for Bitcoin trading.   We 📡 HO (Blockchain, ~107k)"
+  - handle: "@flrfinance"
+    weight: high
+    note: "Building a Multi-Chain DeFi Economy. From the creators (Defi, ~107k)"
+  - handle: "@cypto_bit"
+    weight: high
+    note: "The decentralized real-time data network. $CBI. Build u (Blockchain/Technician, ~104k)"
+  - handle: "@dotbitHQ"
+    weight: high
+    note: "Cross-chain Web3 identities for you and your community. (Blockchain, ~101k)"
+  - handle: "@Umee_CrossChain"
+    weight: high
+    note: "Leverage Trading is finally on Cosmos! #Defi #Cosmos #C (Defi/Technician, ~100k)"
+  - handle: "@PiotrOstapowicz"
+    weight: high
+    note: "#Bitcoin Krypto YouTuber i HODLer od 2017.  Codzienne i (Blockchain, ~97k)"
+  - handle: "@EverRise"
+    weight: high
+    note: "Building Multi-Chain #DeFi Security Infrastructure with (Blockchain/Defi/Technician, ~95k)"
+  - handle: "@coinmetrics"
+    weight: high
+    note: "Cryptoasset market and network data APIs, analytics, an (Analyst, ~94k)"
+  - handle: "@danreecer_"
+    weight: high
+    note: "Tweets on multi-chain, DeFi, stablecoins, Polkadot, Kus (Blockchain/Defi, ~92k)"
+  - handle: "@izumi_Finance"
+    weight: high
+    note: "iZUMi Finance is a multi-chain DeFi protocol providing (Blockchain/Defi, ~88k)"
+  - handle: "@Arc__Finance"
+    weight: high
+    note: "Multi-chain LaaS DeFi platform using liquidity protocol (Defi, ~86k)"
+  - handle: "@avaxholic"
+    weight: high
+    note: "Latest News, Events, Analytics & Insights for DeFi proj (Defi, ~85k)"
+  - handle: "@SolanaNews"
+    weight: high
+    note: "Solana & DeFi News, Features & Analysis.  Looking for y (Defi, ~84k)"
+  - handle: "@DuneAnalytics"
+    weight: high
+    note: "Free crypto analytics by and for the community 💫📊 Creat (Analyst, ~83k)"
+  - handle: "@meanfinance"
+    weight: high
+    note: "Everyday #DeFi workflows powered by Mean Protocol. No-c (Defi, ~79k)"
+  - handle: "@Roobee_invest"
+    weight: high
+    note: "Your companion in the world of #DeFi! Track & Trade & I (Defi, ~79k)"
+
+  # === Tier MEDIUM (15k–50k) ===
+  - handle: "@GenshiroDeFi"
+    weight: medium
+    note: "Genshiro is @EquilibriumDeFi's DeFi one-stop shop on #K (Blockchain/Defi, ~50k)"
+  - handle: "@HubbleProtocol"
+    weight: medium
+    note: "Supercharging Liquidity on Solana DeFi.  $USDH - Censor (Defi, ~49k)"
+  - handle: "@SwftCoin"
+    weight: medium
+    note: "Simple, safe, & secure cross-chain swap on BTC/ETH/BSC/ (Blockchain, ~49k)"
+  - handle: "@UNCX_token"
+    weight: medium
+    note: "DeFi multi-chain service provider since 2020. Creator o (Defi, ~48k)"
+  - handle: "@kyledoops"
+    weight: medium
+    note: "✝️|🇿🇦 |🏋️‍♂️ | 📈| 🌍  https://t.co/tzG0ulfLwY  I spend a (Analyst, ~48k)"
+  - handle: "@knoknok_elf"
+    weight: medium
+    note: "A #Web3 #socialfi open platform on #BNBChain #Aptos and (Blockchain, ~48k)"
+  - handle: "@HorizonProtocol"
+    weight: medium
+    note: "A DeFi platform facilitating the creation of on-chain s (Defi, ~47k)"
+  - handle: "@enginerdoganxu"
+    weight: medium
+    note: "Teknik Analiz | #borsa #crypto | Paylaşımlar yatırım ta (Technician, ~47k)"
+  - handle: "@SphynxLabs"
+    weight: medium
+    note: "Sphynx Labs is here to be everything you need to trade, (Technician, ~46k)"
+  - handle: "@sunnya97"
+    weight: medium
+    note: "Co-Founder of @OsmosisZone | Builder of @Cosmos | Co-Ho (Developer, ~45k)"
+  - handle: "@Truefeedback_io"
+    weight: medium
+    note: "TrueFeedBack is a blockchain powered data analytics pla (Blockchain/Technician, ~45k)"
+  - handle: "@kaizen_finance"
+    weight: medium
+    note: "Kaizen is a first-ever Token Lifecycle Management cross (Blockchain, ~45k)"
+  - handle: "@InsurAce_io"
+    weight: medium
+    note: "Leading Multi-Chain Decentralized Cover. Make Crypto Sa (Blockchain, ~43k)"
+  - handle: "@Milkomeda_com"
+    weight: medium
+    note: "Layer 2 Protocol (Rollups) delivering EVM capabilities (Blockchain, ~43k)"
+  - handle: "@BrincFi"
+    weight: medium
+    note: "Intrinsic yield for Defi  @arbitrum (Defi, ~42k)"
+  - handle: "@BunniesNHomies"
+    weight: medium
+    note: "7575 Bunnies are bouncing onto the Solana blockchain, a (Blockchain, ~42k)"
+  - handle: "@furucombo"
+    weight: medium
+    note: "Furucombo is a multi-chain DeFi aggregator designed to (Defi, ~41k)"
+  - handle: "@CryptoThro"
+    weight: medium
+    note: "PROMOTING CRYPTOCURRENCY #CryptocurrencyNews #Solana #B (Blockchain, ~40k)"
+  - handle: "@sifchain"
+    weight: medium
+    note: "The leading Omni-Chain Dex on Cosmos. Swap, stake, and (Blockchain, ~40k)"
+  - handle: "@hard_protocol"
+    weight: medium
+    note: "The world's first cross-chain money market. Lend, borro (Blockchain, ~39k)"
+  - handle: "@TeamAIKON"
+    weight: medium
+    note: "AIKON makes blockchain technology simple. We build cros (Blockchain, ~39k)"
+  - handle: "@Apillon"
+    weight: medium
+    note: "A #Web3 development platform empowering developers to b (Developer, ~39k)"
+  - handle: "@GrizzlyBTClover"
+    weight: medium
+    note: "On-Chain Analyst For @CryptoQuant_com   Technical Analy (Analyst, ~37k)"
+  - handle: "@TreehouseFi"
+    weight: medium
+    note: "The world's most comprehensive DeFi portfolio analytics (Defi, ~37k)"
+  - handle: "@TaiyoRobotics"
+    weight: medium
+    note: "Taiyo Robotics, building the #Solana Blockchain through (Blockchain/Technician, ~37k)"
+  - handle: "@oraichain"
+    weight: medium
+    note: "AI Layer 1 for Data Economy & Oracle Services #AI x #Bl (Blockchain, ~37k)"
+  - handle: "@NewdexOfficial"
+    weight: medium
+    note: "Multi-chain DEX trading entry.  #DEX #Defi #EOS #BSC #B (Blockchain, ~37k)"
+  - handle: "@ArcanaNetwork"
+    weight: medium
+    note: "Integrate Arcana’s Auth & Store SDKs in a jiffy to onbo (Blockchain, ~37k)"
+  - handle: "@Instadapp"
+    weight: medium
+    note: "Powerful Multi-Chain DeFi Management.  https://t.co/iA8 (Blockchain/Defi, ~36k)"
+  - handle: "@AmbireWallet"
+    weight: medium
+    note: "?? Live now?? The #Web3 smart wallet made for humans. A (Blockchain/Technician, ~36k)"
+
+  # ---- Generalist AI/tech accounts blocked by default ----
+  # These flooded the recall pool in earlier installs (OpenAI launches,
+  # antique-watch posts, startup commentary). Slot kept for visibility
+  # — operator flips to medium only if the brand pivot includes that beat.
   - handle: "@paulg"
     weight: blocked
-    note: "generalist VC commentary; flip to medium only if explicitly
-           writing about a chainstream-adjacent topic"
+    note: "generalist VC commentary"
   - handle: "@sama"
     weight: blocked
     note: "OpenAI CEO; product-launch noise"
@@ -57,13 +219,47 @@ twitter_kols:
     note: "AI researcher; not crypto-infra"
   - handle: "@simonw"
     weight: blocked
-    note: "Python/AI; not crypto-infra"
+    note: "Python / general AI tooling"
   - handle: "@patrickc"
     weight: blocked
     note: "Stripe; payments-tangential at best"
   - handle: "@dhh"
     weight: blocked
     note: "Rails / general dev; not crypto-infra"
+
+# ============================================================
+# Twitter / X keyword search (v1.0.26)
+# ============================================================
+# Runs Twitter v2 search_recent_tweets alongside the KOL pulls above.
+# Required envs to enable (already set in env.chainstream.template):
+#   AGENTFLOW_TWITTER_SEARCH_ENABLED=true
+#   TWITTER_BEARER_TOKEN=<your_v2_bearer_token>
+# `weight` semantics match twitter_kols.
+twitter_search:
+  - query: "MEV OR \"smart wallet\" OR rollup OR \"account abstraction\""
+    max_results: 30
+    weight: high
+    note: "core chainstream beat — protocol-level on-chain flow"
+  - query: "(on-chain OR onchain) (data OR analytics OR indexer)"
+    max_results: 30
+    weight: high
+    note: "data infra signal"
+  - query: "(MCP OR x402) (crypto OR onchain OR wallet)"
+    max_results: 30
+    weight: high
+    note: "agent execution surface"
+  - query: "Solana mempool OR \"DEX routing\" OR \"smart money\""
+    max_results: 25
+    weight: medium
+    note: "trade execution + smart-money flow"
+  - query: "\"intent settlement\" OR \"intent-based\" OR EigenLayer OR restaking"
+    max_results: 25
+    weight: medium
+    note: "settlement layer + restaking infra"
+  - query: "(KYT OR KYA OR OFAC) (crypto OR onchain OR wallet)"
+    max_results: 20
+    weight: medium
+    note: "compliance signal"
 
 # ============================================================
 # RSS Feeds — crypto / infra only.

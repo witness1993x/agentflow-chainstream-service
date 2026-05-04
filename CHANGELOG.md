@@ -1,5 +1,47 @@
 # Changelog — chainstream-service overlay
 
+## [1.0.5] — 2026-05-04
+
+* Pin bumped: framework v1.0.26+ required (introduces twitter_search
+  collector). Default env in this overlay enables it.
+* `overlay/sources.chainstream.seed.yaml` — twitter_kols block
+  rewritten from a 5-handle hand-curated list to a 55-handle
+  data-derived list:
+  * Source: a 131,547-row Twitter KOL universe CSV the operator
+    supplied; filtered down to 263 candidates with strict regex
+    match on chainstream-domain tokens (MEV / on-chain / rollup /
+    indexer / wallet / Solana / Cosmos / etc.) AND infra-flavored
+    role tags (Developer / Defi / Blockchain / Founder / Technician
+    / Analyst) AND ≥10k followers AND no NFT/memecoin/p2e/launchpad
+    noise.
+  * Top tier (25): @DefiLlama, @DuneAnalytics, @coinmetrics,
+    @whale_map, @MapProtocol, @SolanaNews, etc. — flagged
+    `weight: high`.
+  * Mid tier (30): @sunnya97 (Cosmos/Osmosis), @HubbleProtocol,
+    @Milkomeda_com, @Apillon, @TreehouseFi, etc. — flagged
+    `weight: medium`.
+  * 6 generalist accounts (@paulg / @sama / @karpathy / @simonw /
+    @patrickc / @dhh) preserved at `weight: blocked` for visibility
+    + easy un-blocking if brand pivot ever includes that beat.
+* `overlay/sources.chainstream.seed.yaml` — added `twitter_search:`
+  block with 6 chainstream-tailored Twitter v2 queries:
+  * MEV / smart wallet / rollup / account abstraction
+  * on-chain data / analytics / indexer
+  * MCP / x402 (agent execution surface)
+  * Solana mempool / DEX routing / smart money
+  * intent settlement / EigenLayer / restaking
+  * KYT / KYA / OFAC compliance
+* `overlay/env.chainstream.template` — `AGENTFLOW_TWITTER_SEARCH_ENABLED`
+  defaulted to `true` so the second recall layer fires out of the box.
+
+### Operator note
+
+55 KOLs is auto-curated, NOT hand-vetted. Some entries are protocol
+official accounts which lean toward self-promotion; trim with
+`weight: blocked` over time. The point is to seed a reasonable starting
+pool that the v1.0.23 signal-domain filter + v1.0.25 blocklist can
+sieve, not a perfect editorial list.
+
 ## [1.0.4] — 2026-05-04
 
 * `overlay/sources.chainstream.seed.yaml` — three institutional crypto
