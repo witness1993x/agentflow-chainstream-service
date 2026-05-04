@@ -1,5 +1,27 @@
 # Changelog — chainstream-service overlay
 
+## [1.0.7] — 2026-05-04
+
+* Replace v1.0.4's three guessed RSS URLs (Galaxy / Variant / Paradigm)
+  with **four verified-live** crypto-infra RSS feeds. Each URL was
+  probed with `curl -A "feedparser/6.0"` and confirmed HTTP 200 with
+  valid RSS/Atom XML body before commit:
+  * **Variant Fund** — `https://variant.fund/feed/` (small but live;
+    survived from v1.0.4 since the URL was correct)
+  * **Bankless** — `https://www.bankless.com/rss/feed` (canonical
+    after 302 from `/feed`)
+  * **The Defiant** — `https://thedefiant.io/api/feed` (canonical
+    after 301 from `/feed`)
+  * **Ethereum Foundation Blog** — `https://blog.ethereum.org/en/feed.xml`
+    (canonical after 301 from `/feed.xml`)
+* Dropped:
+  * **Galaxy Research** — `/research/feed/` 301-redirects to an HTML
+    insights page; no public RSS endpoint at any obvious path.
+  * **Paradigm** — every `feed.xml` / `rss.xml` / `writing/feed.xml`
+    variant returns 404; main page HTML carries no `<link rel=alternate>`
+    pointing at a feed. They appear to not publish RSS publicly.
+* Total RSS list now 7 (3 original + 4 new), all live.
+
 ## [1.0.6] — 2026-05-04
 
 * Pin bumped: framework v1.0.27+ (top_k default 3 → 5).

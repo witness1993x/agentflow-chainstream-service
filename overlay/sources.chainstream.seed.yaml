@@ -278,22 +278,28 @@ rss_feeds:
     name: "Matt Blewitt (Blockworks)"
     relevance_to_series: ["C"]
 
-  # 1.0.4 — institutional crypto research arms. URL patterns below are
-  # the typical conventions; if any 404s on first scan, check the
-  # publication's site and update inline. Bad URLs do NOT block the
-  # rest of the pipeline (feedparser per-feed error isolation).
-  - url: "https://www.galaxy.com/research/feed/"
-    name: "Galaxy Research"
-    relevance_to_series: ["C"]
-    note: "operator: verify URL — feed path may shift"
+  # 1.0.7 — verified live crypto-infra feeds. All four URLs were probed
+  # with curl -A "feedparser/6.0" and confirmed 200 + valid RSS XML.
+  # Galaxy and Paradigm were dropped from the v1.0.4 attempt because
+  # they don't publish public RSS at any obvious path (Galaxy redirects
+  # /research/feed/ to an HTML insights page; Paradigm 404s on every
+  # feed.xml / rss.xml / writing/feed.xml variant).
   - url: "https://variant.fund/feed/"
     name: "Variant Fund"
     relevance_to_series: ["C"]
-    note: "operator: verify URL — feed path may shift"
-  - url: "https://www.paradigm.xyz/feed.xml"
-    name: "Paradigm"
+    note: "infra-leaning crypto VC; small but high-signal feed"
+  - url: "https://www.bankless.com/rss/feed"
+    name: "Bankless"
     relevance_to_series: ["C"]
-    note: "operator: verify URL — feed path may shift"
+    note: "DeFi-focused newsletter; redirected from /feed"
+  - url: "https://thedefiant.io/api/feed"
+    name: "The Defiant"
+    relevance_to_series: ["C"]
+    note: "DeFi journalism; canonical at /api/feed after 301"
+  - url: "https://blog.ethereum.org/en/feed.xml"
+    name: "Ethereum Foundation Blog"
+    relevance_to_series: ["C"]
+    note: "protocol-level Ethereum updates; large catalog"
 
 # ============================================================
 # HackerNews — crypto-infra keywords. The framework example used
