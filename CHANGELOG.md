@@ -1,5 +1,12 @@
 # Changelog — chainstream-service overlay
 
+## [1.0.6] — 2026-05-04
+
+* Pin bumped: framework v1.0.27+ (top_k default 3 → 5).
+* `overlay/env.chainstream.template` mirrors the framework default with
+  `AGENTFLOW_HOTSPOTS_SCHEDULE_TOP_K=5`.
+* No other changes — this is purely a default-bump alignment release.
+
 ## [1.0.5] — 2026-05-04
 
 * Pin bumped: framework v1.0.26+ required (introduces twitter_search
