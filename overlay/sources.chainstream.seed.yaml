@@ -67,8 +67,9 @@ twitter_kols:
 
 # ============================================================
 # RSS Feeds — crypto / infra only.
-# Operator: add a few more crypto-infra publications (Substack of
-# specific crypto researchers, protocol blogs, etc.) over time.
+# Operator: extend with protocol-specific blogs (Optimism, Arbitrum,
+# Solana foundation, etc.) over time. Bad URLs degrade gracefully —
+# feedparser logs a per-feed error and the rest of the scan continues.
 # ============================================================
 rss_feeds:
   - url: "https://decentralisedco.com/feed"
@@ -80,6 +81,23 @@ rss_feeds:
   - url: "https://matt.blwt.io/feed/feed.rss"
     name: "Matt Blewitt (Blockworks)"
     relevance_to_series: ["C"]
+
+  # 1.0.4 — institutional crypto research arms. URL patterns below are
+  # the typical conventions; if any 404s on first scan, check the
+  # publication's site and update inline. Bad URLs do NOT block the
+  # rest of the pipeline (feedparser per-feed error isolation).
+  - url: "https://www.galaxy.com/research/feed/"
+    name: "Galaxy Research"
+    relevance_to_series: ["C"]
+    note: "operator: verify URL — feed path may shift"
+  - url: "https://variant.fund/feed/"
+    name: "Variant Fund"
+    relevance_to_series: ["C"]
+    note: "operator: verify URL — feed path may shift"
+  - url: "https://www.paradigm.xyz/feed.xml"
+    name: "Paradigm"
+    relevance_to_series: ["C"]
+    note: "operator: verify URL — feed path may shift"
 
 # ============================================================
 # HackerNews — crypto-infra keywords. The framework example used

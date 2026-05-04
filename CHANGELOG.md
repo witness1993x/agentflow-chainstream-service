@@ -1,5 +1,14 @@
 # Changelog — chainstream-service overlay
 
+## [1.0.4] — 2026-05-04
+
+* `overlay/sources.chainstream.seed.yaml` — three institutional crypto
+  research RSS feeds added: Galaxy Research, Variant Fund, Paradigm.
+  Each entry carries a `note:` reminding the operator to verify the
+  URL post-install (feed paths shift); per-feed errors don't break
+  the rest of the scan thanks to feedparser isolation.
+* No env / overlay-script changes; pin to framework v1.0.25+ unchanged.
+
 ## [1.0.3] — 2026-05-04
 
 * Pin bumped: framework v1.0.25+ required (introduces signal blocklist).
