@@ -80,6 +80,25 @@ else
   log "topic_profiles.yaml already exists; skipping (use --force to overwrite)"
 fi
 
+# 3. Seed ~/.agentflow/sources.yaml only if missing (v1.0.2 — D1 recall fix).
+SOURCES_FILE="$PROFILE_DIR/sources.yaml"
+SOURCES_SEED="$OVERLAY_DIR/sources.chainstream.seed.yaml"
+
+if [ ! -f "$SOURCES_FILE" ] || [ "$FORCE" -eq 1 ]; then
+  if [ -f "$SOURCES_SEED" ]; then
+    cp "$SOURCES_SEED" "$SOURCES_FILE"
+    chown "$USER_NAME:$USER_NAME" "$SOURCES_FILE"
+    log "seeded $SOURCES_FILE (chainstream-flavored — generalist KOLs blocked)"
+  else
+    warn "sources.chainstream.seed.yaml missing from overlay; skipping sources seed"
+  fi
+else
+  log "sources.yaml already exists; skipping (use --force to overwrite)"
+  warn "tip: existing sources.yaml may still have @sama/@paulg/etc set to weight=high;"
+  warn "     either re-run with --force or manually mark them weight=blocked to stop"
+  warn "     general-tech KOLs from polluting D1 recall."
+fi
+
 echo
 log "ChainStream overlay applied. Restart daemon:"
 log "  systemctl restart agentflow-review"

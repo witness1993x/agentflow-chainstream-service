@@ -1,0 +1,123 @@
+# ChainStream sources seed — landed at ~/.agentflow/sources.yaml on first
+# install. Seeded ONLY if the operator's existing sources.yaml is missing
+# (apply_overlay.sh refuses to clobber).
+#
+# Diff from the framework example sources.yaml.example:
+#   - Twitter KOLs trimmed to crypto-infra signal. General-tech accounts
+#     (@sama / @paulg / @karpathy / @simonw / @patrickc / @dhh) are
+#     listed but with `weight: blocked` so they don't fire by default —
+#     keeps them on disk in case the operator wants to flip them on
+#     later, but no signal pollution out of the box.
+#   - HN keywords swapped from broad ("AI" / "Claude" / "LLM") to
+#     crypto-infra specific (MEV / rollup / DEX / indexer / mempool /
+#     OFAC / KYT / on-chain / wallet).
+#   - RSS list pruned to crypto/infra publications.
+#   - The operator extends the KOL list with their own crypto-infra
+#     follow list — this seed is intentionally short, not an
+#     authoritative roster.
+
+version: "1.0"
+last_updated: "2026-05-04"
+
+# ============================================================
+# Twitter / X KOLs
+# ============================================================
+# Operator: extend with your own follow list of crypto-infra builders.
+# weight: high   — collected always
+# weight: medium — collected unless AGENTFLOW_TWITTER_KOL_ONLY_HIGH=true
+# weight: blocked — never collected (slot reserved for posterity)
+twitter_kols:
+  - handle: "@VitalikButerin"
+    weight: high
+    relevance_to_series: ["C"]
+  - handle: "@balajis"
+    weight: medium
+    relevance_to_series: ["B", "C"]
+  - handle: "@dwr_nt"
+    weight: medium
+    relevance_to_series: ["C"]
+  - handle: "@rainandcoffee"
+    weight: medium
+    relevance_to_series: ["C"]
+  - handle: "@jon_charb"
+    weight: medium
+    relevance_to_series: ["C"]
+
+  # Generalist accounts — kept blocked because they pull OpenAI / startup
+  # / antique-watch noise that swamps the chainstream signal.
+  - handle: "@paulg"
+    weight: blocked
+    note: "generalist VC commentary; flip to medium only if explicitly
+           writing about a chainstream-adjacent topic"
+  - handle: "@sama"
+    weight: blocked
+    note: "OpenAI CEO; product-launch noise"
+  - handle: "@karpathy"
+    weight: blocked
+    note: "AI researcher; not crypto-infra"
+  - handle: "@simonw"
+    weight: blocked
+    note: "Python/AI; not crypto-infra"
+  - handle: "@patrickc"
+    weight: blocked
+    note: "Stripe; payments-tangential at best"
+  - handle: "@dhh"
+    weight: blocked
+    note: "Rails / general dev; not crypto-infra"
+
+# ============================================================
+# RSS Feeds — crypto / infra only.
+# Operator: add a few more crypto-infra publications (Substack of
+# specific crypto researchers, protocol blogs, etc.) over time.
+# ============================================================
+rss_feeds:
+  - url: "https://decentralisedco.com/feed"
+    name: "Decentralised.co"
+    relevance_to_series: ["C"]
+  - url: "https://messari.io/rss"
+    name: "Messari Research"
+    relevance_to_series: ["C"]
+  - url: "https://matt.blwt.io/feed/feed.rss"
+    name: "Matt Blewitt (Blockworks)"
+    relevance_to_series: ["C"]
+
+# ============================================================
+# HackerNews — crypto-infra keywords. The framework example used
+# "AI" / "Claude" / "LLM" which matches half of HN front page on any
+# given day. We swap to terms that actually filter for chainstream's
+# beat.
+# ============================================================
+hackernews:
+  enabled: true
+  filter_keywords:
+    - "MEV"
+    - "Solana"
+    - "rollup"
+    - "DEX"
+    - "indexer"
+    - "mempool"
+    - "OFAC"
+    - "KYT"
+    - "on-chain"
+    - "smart wallet"
+    - "account abstraction"
+    - "x402"
+    - "MCP"
+    - "agent"
+  relevance_to_series: ["C"]
+  min_score: 50
+
+# ============================================================
+# Discovery defaults — same as framework. Operator can tighten.
+# ============================================================
+discovery_config:
+  scan_frequency_hours: 12
+  daily_candidates_target: 12
+  min_discussion_volume: 50
+  min_hn_score: 50
+  time_decay_hours: 48
+  cross_source_bonus: 0.3
+  series_weight:
+    series_A: 0.10
+    series_B: 0.30
+    series_C: 0.60   # crypto-infra is the dominant lane for ChainStream

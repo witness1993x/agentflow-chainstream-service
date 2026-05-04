@@ -1,5 +1,28 @@
 # Changelog — chainstream-service overlay
 
+## [1.0.2] — 2026-05-04
+
+* Pin bumped: framework v1.0.22+ required (introduces signal-level
+  domain filter + KOL weight allowlist).
+* New overlay file `overlay/sources.chainstream.seed.yaml` — ships at
+  `~/.agentflow/sources.yaml` for fresh installs. Generalist Twitter
+  accounts (`@sama` / `@paulg` / `@karpathy` / `@simonw` / `@patrickc` /
+  `@dhh`) are present but marked `weight: blocked` so they don't pull
+  signal by default. HN keywords swapped from `AI` / `Claude` / `LLM`
+  (matches half of HN front page) to crypto-infra-specific terms
+  (`MEV` / `rollup` / `DEX` / `mempool` / `OFAC` / `account abstraction`
+  / `MCP` / `x402` / `on-chain`). RSS list pruned to crypto pubs only.
+* `apply_overlay.sh` now also seeds sources.yaml when missing (idempotent
+  rule preserved — never clobbers operator's existing config without
+  `--force`). When existing config is present, prints a tip reminding
+  the operator to mark generalist KOLs `weight: blocked`.
+* Overlay env adds:
+  * `AGENTFLOW_SIGNAL_DOMAIN_THRESHOLD=0.03` — pre-cluster signal
+    filter (drops irrelevant tweets before clustering).
+  * `AGENTFLOW_TWITTER_KOL_ONLY_HIGH=false` — defaults off so the
+    seeded medium-weight crypto KOLs (`@balajis` etc.) still fire;
+    operator can flip to `true` for max strictness.
+
 ## [1.0.1] — 2026-05-03
 
 * Pin bumped: framework v1.0.21+ required (introduces

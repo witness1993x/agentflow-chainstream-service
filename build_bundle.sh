@@ -51,6 +51,7 @@ echo "[3/4] layering ChainStream overlay..."
 mkdir -p "$DEST/chainstream-overlay"
 cp "$OVERLAY_DIR/overlay/env.chainstream.template"            "$DEST/chainstream-overlay/"
 cp "$OVERLAY_DIR/overlay/topic_profile.chainstream.seed.yaml" "$DEST/chainstream-overlay/"
+cp "$OVERLAY_DIR/overlay/sources.chainstream.seed.yaml"       "$DEST/chainstream-overlay/"
 cp "$OVERLAY_DIR/overlay/apply_overlay.sh"                    "$DEST/chainstream-overlay/"
 chmod +x "$DEST/chainstream-overlay/apply_overlay.sh"
 
@@ -71,6 +72,7 @@ fail=0
 for required in \
     "chainstream-overlay/env.chainstream.template" \
     "chainstream-overlay/topic_profile.chainstream.seed.yaml" \
+    "chainstream-overlay/sources.chainstream.seed.yaml" \
     "chainstream-overlay/apply_overlay.sh" \
     "INSTALL_CHAINSTREAM.md" \
     "CHAINSTREAM_CHANGELOG.md" \
