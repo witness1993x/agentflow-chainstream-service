@@ -45,6 +45,7 @@ relationship:
 | chainstream-service | framework (agentflow-article-publishing) |
 |---------------------|------------------------------------------|
 | 1.0.0               | 1.0.20+                                  |
+| 1.0.8               | 1.0.28+                                  |
 
 When the framework ships a new version with breaking env changes, bump
 the overlay's pin and update the templates accordingly.

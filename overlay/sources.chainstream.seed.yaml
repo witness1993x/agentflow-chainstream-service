@@ -17,7 +17,7 @@
 #     authoritative roster.
 
 version: "1.0"
-last_updated: "2026-05-04"
+last_updated: "2026-04-30"
 
 # ============================================================
 # Twitter / X KOLs
@@ -236,18 +236,18 @@ twitter_kols:
 #   TWITTER_BEARER_TOKEN=<your_v2_bearer_token>
 # `weight` semantics match twitter_kols.
 twitter_search:
-  - query: "MEV OR \"smart wallet\" OR rollup OR \"account abstraction\""
+  - query: "(\"MEV\" OR \"Maximal Extractable Value\" OR \"MEV bot\" OR \"smart wallet\" OR rollup OR \"account abstraction\") (crypto OR onchain OR ethereum OR solana OR wallet OR blockchain)"
     max_results: 30
     weight: high
-    note: "core chainstream beat — protocol-level on-chain flow"
+    note: "core chainstream beat — protocol-level on-chain flow. 1.0.8 — tightened: bare unquoted MEV was matching Arabic coupon-spam containing the string 'MEv' (the Joseph-cluster sibling failure mode); now the OR-set must ALSO co-occur with an unambiguous crypto context token."
   - query: "(on-chain OR onchain) (data OR analytics OR indexer)"
     max_results: 30
     weight: high
     note: "data infra signal"
-  - query: "(MCP OR x402) (crypto OR onchain OR wallet)"
+  - query: "(\"Multi-Chain Protocol\" OR x402 OR \"agent payments\") (crypto OR onchain OR wallet)"
     max_results: 30
     weight: high
-    note: "agent execution surface"
+    note: "agent execution surface — 1.0.8 disambiguated bare MCP (collided with Anthropic Model Context Protocol and pulled in @karpathy CPU-architecture posts)"
   - query: "Solana mempool OR \"DEX routing\" OR \"smart money\""
     max_results: 25
     weight: medium
@@ -256,10 +256,10 @@ twitter_search:
     max_results: 25
     weight: medium
     note: "settlement layer + restaking infra"
-  - query: "(KYT OR KYA OR OFAC) (crypto OR onchain OR wallet)"
+  - query: "(\"Know Your Transaction\" OR \"Know Your Address\" OR OFAC OR \"crypto compliance\") (crypto OR onchain OR wallet)"
     max_results: 20
     weight: medium
-    note: "compliance signal"
+    note: "compliance signal — 1.0.8: bare KYA collided with Hindi 'kya' (= what?) and pulled in @-reply Hindi conversational chatter (Joseph cluster). Use the spelled-out forms; OFAC is fine since it's a unique English acronym."
 
 # ============================================================
 # RSS Feeds — crypto / infra only.
@@ -322,8 +322,9 @@ hackernews:
     - "smart wallet"
     - "account abstraction"
     - "x402"
-    - "MCP"
-    - "agent"
+    - "Multi-Chain Protocol"
+    - "crypto agent"
+    - "onchain agent"
   relevance_to_series: ["C"]
   min_score: 50
 
