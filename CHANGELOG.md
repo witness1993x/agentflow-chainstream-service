@@ -1,5 +1,18 @@
 # Changelog — chainstream-service overlay
 
+## [1.0.3] — 2026-05-04
+
+* Pin bumped: framework v1.0.25+ required (introduces signal blocklist).
+* Overlay env adds default `AGENTFLOW_SIGNAL_BLOCKLIST_TOKENS=` covering
+  the entities that consistently squeaked past the v1.0.23 coverage
+  filter on chainstream profile: `OpenAI` / `ChatGPT` / `Anthropic` /
+  `Sam Altman` / `Greg Brockman` / `DeepSeek` / `Claude API` /
+  `Vintage` / `Omega` / `Southwest Airlines` / `Stockholm`. Merged
+  with chainstream's existing `avoid_terms` (general AI hype /
+  consumer chatbot / celebrity crypto / macro politics) at runtime.
+* Operator extends this list as new noise patterns appear from
+  scheduled scans.
+
 ## [1.0.2] — 2026-05-04
 
 * Pin bumped: framework v1.0.22+ required (introduces signal-level
