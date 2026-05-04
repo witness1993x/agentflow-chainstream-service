@@ -52,8 +52,13 @@ profiles:
         - real-time crypto infra
         - smart money
       ai_execution:
-        - MCP
-        - AI agent
+        # 1.0.8 — bare "MCP" removed; collided with Anthropic Model
+        # Context Protocol on the recall side and produced
+        # off-domain hotspots (Karpathy CPU loops, Anthropic releases).
+        # Use the unambiguous expansion below; operator extends as needed.
+        - Multi-Chain Protocol
+        - x402
+        - crypto agent
         - state machine
       ecosystem:
         - Solana
@@ -63,12 +68,25 @@ profiles:
     search_queries:
       - smart money on-chain agents
       - real-time chain data infra
-      - MCP crypto
+      - Multi-Chain Protocol crypto wallet
 
+    # 1.0.8 — added Anthropic / Model Context Protocol / Karpathy and
+    # non-English chatter markers. The verification scan surfaced
+    # (a) an Anthropic-MCP "Karpathy's Loop" cluster from the bare
+    # "MCP crypto" search, and (b) a Hindi-mixed @-reply ("Joseph 回归
+    # 家庭") that snuck through the domain filter by being too short.
+    # The framework v1.0.28 short-reply filter handles (b) at the
+    # signal stage; these avoid_terms double up so D2 spine_lint
+    # also rejects anything that survives upstream.
     avoid_terms:
       - GDPR
       - CCPA
       - audited
       - SOC2
+      - Anthropic
+      - Model Context Protocol
+      - Karpathy
+      - OpenAI
+      - ChatGPT
 
 last_updated: "(auto-stamped on first upsert)"

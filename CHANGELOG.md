@@ -1,5 +1,75 @@
 # Changelog — chainstream-service overlay
 
+## [1.0.8] — 2026-04-30
+
+* Pin bumped: framework v1.0.28+ required (introduces signal-quality
+  short-reply filter). The two changes below address the **two noise
+  hotspots** observed in the v1.0.7 + framework v1.0.27 verification
+  run with Twitter funded:
+  * **Joseph (Hindi-mixed @-replies) → "Joseph 回归家庭" hotspot.**
+    Two layers of root cause:
+    * Layer 1 — short @-reply chatter slipped past the 0.03 domain
+      gate by being too short to fail it. Fixed in framework v1.0.28
+      with `_apply_signal_quality_filter` (drops Twitter @-replies
+      under 60 chars). This overlay turns it on by default:
+      `AGENTFLOW_DROP_SHORT_REPLIES=true` /
+      `AGENTFLOW_MIN_REPLY_LEN=60`.
+    * Layer 2 — the v1.0.5 compliance search query
+      `(KYT OR KYA OR OFAC) (crypto OR onchain OR wallet)` was
+      pulling Hindi tweets en masse because **"kya"** is
+      Hindi for "what?" and Twitter's tokenizer is
+      case-insensitive — every Hindi @-reply containing "kya"
+      ALSO containing the word "crypto" (a common loanword in
+      Indian crypto Twitter) matched the query. Even after the
+      60-char filter, longer Hindi @-replies (~120 chars) still
+      formed a 2-signal Joseph cluster. **Query rewritten** to use
+      the spelled-out forms: `("Know Your Transaction" OR "Know
+      Your Address" OR OFAC OR "crypto compliance") (crypto OR
+      onchain OR wallet)`. OFAC kept as-is — it's a unique
+      English acronym with no foreign-language collision risk.
+    * Layer 3 — same class of failure surfaced once more on the
+      MEV beat: the v1.0.5 query
+      `MEV OR "smart wallet" OR rollup OR "account abstraction"`
+      pulled Arabic coupon-spam tweets containing the string
+      `MEv` (random 3-letter sequence in shopping-promo content).
+      **Query rewritten** to require co-occurrence with an
+      unambiguous crypto-context token:
+      `("MEV" OR "Maximal Extractable Value" OR "MEV bot" OR
+      "smart wallet" OR rollup OR "account abstraction")
+      (crypto OR onchain OR ethereum OR solana OR wallet OR
+      blockchain)`. Pattern: any 3-letter crypto acronym that
+      could collide with a non-English token MUST be paired with
+      a unique-English crypto co-occurrence token in v2 search.
+  * **"Karpathy's Loop / CPU auto-architecture" hotspot.** Came from
+    the v1.0.7 search query `(MCP OR x402) (crypto OR onchain OR
+    wallet)` collecting Anthropic-MCP / Model-Context-Protocol
+    chatter (which Twitter's relevance ranker happily threw at the
+    bare token "MCP" and which @karpathy posts about regularly).
+    The overlay's "MCP" was supposed to mean **Multi-Chain Protocol**,
+    not Anthropic's protocol. Fixes:
+    * `overlay/sources.chainstream.seed.yaml` — search query rewritten
+      to `("Multi-Chain Protocol" OR x402 OR "agent payments")
+      (crypto OR onchain OR wallet)`.
+    * `overlay/sources.chainstream.seed.yaml` — HN keyword "MCP"
+      replaced with "Multi-Chain Protocol" / "crypto agent" /
+      "onchain agent". HN's broad post titles otherwise match
+      Anthropic-MCP discussion threads.
+    * `overlay/topic_profile.chainstream.seed.yaml` — `keyword_groups`
+      bare "MCP" replaced with "Multi-Chain Protocol" / "x402" /
+      "crypto agent". `search_queries` "MCP crypto" replaced with
+      "Multi-Chain Protocol crypto wallet".
+    * `overlay/topic_profile.chainstream.seed.yaml` — `avoid_terms`
+      added: Anthropic, Model Context Protocol, Karpathy, OpenAI,
+      ChatGPT. Belt-and-suspenders for any signal that survives
+      upstream filtering — D2's spine_lint will reject articles
+      anchored on these.
+    * `overlay/env.chainstream.template` — `AGENTFLOW_SIGNAL_BLOCKLIST_TOKENS`
+      extended with "Model Context Protocol" and "Karpathy". This
+      drops the signal at the framework's blocklist stage before
+      it ever reaches clustering.
+* No other changes. KOL list, RSS list, and weight tiers are
+  unchanged from 1.0.7.
+
 ## [1.0.7] — 2026-05-04
 
 * Replace v1.0.4's three guessed RSS URLs (Galaxy / Variant / Paradigm)
